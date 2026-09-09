@@ -110,6 +110,13 @@ function bootstrap() {
 const staticHandler = fs.existsSync(PUBLIC_DIR) ? serveStatic(PUBLIC_DIR) : null;
 
 module.exports = async (req, res) => {
+  // Vercel rewrites "/api/x" -> "/api/api/x" (see vercel.json) because the
+  // platform replaces req.url with the rewrite destination. Normalise back to
+  // the original path here; when the destination is preserved verbatim the
+  // extra prefix is simply absent and nothing changes.
+  if (req.url === '/api/api') req.url = '/api';
+  else if (req.url.startsWith('/api/api/')) req.url = req.url.slice(4);
+
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
