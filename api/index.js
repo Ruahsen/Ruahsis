@@ -92,7 +92,19 @@ function bootstrap() {
         };
       });
 
-      router.get('/api/health', () => ({ ok: true, service: 'RUAHSIS ASCII', time: new Date().toISOString() }));
+      router.get('/api/health', () => ({ ok: true, service: 'RUAHSIS ASCII', version: 'svl-20260909-a7', time: new Date().toISOString() }));
+
+      router.get('/api/_debug', (req) => ({
+        ok: true,
+        url: req.url,
+        pathname: req.pathname,
+        headers: {
+          host: req.headers.host,
+          'x-vercel-deployment-url': req.headers['x-vercel-deployment-url'] || null,
+          'x-vercel-forwarded-host': req.headers['x-vercel-forwarded-host'] || null,
+          'x-vercel-id': req.headers['x-vercel-id'] || null
+        }
+      }));
 
       registerRoutes(router, db, auth, {
         logActivity: (req, action, detail) => {
