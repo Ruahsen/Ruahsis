@@ -1,0 +1,16 @@
+{
+  "name": "ruahsis-ascii",
+  "version": "1.0.0",
+  "description": "RUAHSIS Student Information System - web based, ASCII terminal interface",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "seed": "node --disable-warning=ExperimentalWarning lib/seed.js",
+    "reset": "node --disable-warning=ExperimentalWarning lib/reset.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "license": "GPL-2.0",
+  "private": true
+}

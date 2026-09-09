@@ -1,0 +1,20 @@
+# Runtime data (SQLite database)
+data/
+
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
